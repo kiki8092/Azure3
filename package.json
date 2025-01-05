@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@azure/storage-blob": "^12.26.0",
+    "dotenv": "^16.4.7",
+    "stream-to-buffer": "^0.1.0"
+  }
+}
