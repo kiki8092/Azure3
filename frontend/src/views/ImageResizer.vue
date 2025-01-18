@@ -11,6 +11,7 @@
     <!-- Display selected file name -->
     <p v-if="fileSelected">Image selected: {{ imageFileName }}</p>
     <br>
+    <img v-if="fileSelected" :src="imageURL" style="max-height: 500px; max-width: 500px"/>
     <p v-if="uploadSuccess">Image {{imageFileName}} uploaded successfully!!</p>
 
     <p v-if="processingMessage" v-html="processingMessage"></p>
@@ -35,6 +36,7 @@ export default {
       downloadName: "",
       processingMessage: "",
       sasToken: process.env.VUE_APP_SAS_TOKEN,
+      imageURL: "",
     };
   },
 
@@ -51,6 +53,8 @@ export default {
 
     // Clear download URL
     this.downloadUrl = null;
+    // clearing imageURL
+    this.imageURL = "";
   },
 
 
@@ -61,6 +65,10 @@ export default {
       this.imageFileName = this.imageFile.name; // Store the file name
       console.log("File selected:", this.imageFileName);  // Log selected file
       this.fileSelected = true;  // Mark file as selected
+
+      // Creating file URL
+      this.imageURL = URL.createObjectURL(this.imageFile)
+
     },
 
     // Image Downloader function works as well although redundant as the containers are set for public access.
