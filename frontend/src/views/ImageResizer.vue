@@ -73,7 +73,7 @@ export default {
 
     // Image Downloader function works as well although redundant as the containers are set for public access.
 
-    async imageDownloader(retries=5) {
+    async imageDownloader(retries=10) {
 
       for (let attempt=1; attempt<=retries; attempt++) {
         try {
@@ -85,8 +85,8 @@ export default {
               `https://21f3001584foundation.blob.core.windows.net?${this.sasToken}`
           );
 
-          console.log("Waiting for 5 seconds to allow processing...");
-          await new Promise(resolve => setTimeout(resolve, 5000));
+          console.log("Waiting for 10 seconds to allow processing...");
+          await new Promise(resolve => setTimeout(resolve, 10000));
 
           const processedImagesContainer = storageAcc.getContainerClient("processed-images");
           console.log("Download Container Client Created Successfully")
